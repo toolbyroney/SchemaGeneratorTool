@@ -1,0 +1,581 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIP Schema Code Generator - Premium SEO Tool</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+  <style>
+:root {
+  --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-mono: 'Courier New', monospace;
+  --color-background-primary: linear-gradient(135deg, #1a1a2e, #16213e);
+  --color-background-secondary: linear-gradient(135deg, #0f0f23, #1a1a2e);
+  --color-background-tertiary: linear-gradient(135deg, #16213e, #0f0f23);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b0b0b0;
+  --color-border-primary: #ffd700;
+  --color-border-secondary: #333333;
+  --color-border-tertiary: #444444;
+  --color-accent: #ffd700;
+  --color-accent-hover: #ffed4e;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --shadow: 0 4px 20px rgba(255, 215, 0, 0.1);
+  --shadow-hover: 0 8px 30px rgba(255, 215, 0, 0.2);
+}
+* { box-sizing: border-box; }
+body { 
+  margin: 0; 
+  padding: 0; 
+  font-family: var(--font-sans); 
+  background: var(--color-background-secondary); 
+  color: var(--color-text-primary); 
+  animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.wrap { 
+  padding: 2rem 1rem; 
+  font-family: var(--font-sans); 
+  max-width: 900px; 
+  margin: 0 auto; 
+  animation: slideUp 0.8s ease-out 0.2s both;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section { 
+  background: var(--color-background-primary); 
+  border: 1px solid var(--color-border-primary); 
+  border-radius: var(--border-radius-lg); 
+  padding: 1.5rem 1.5rem; 
+  margin-bottom: 1.5rem; 
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out both;
+}
+.section:nth-child(1) { animation-delay: 0.1s; }
+.section:nth-child(2) { animation-delay: 0.2s; }
+.section:nth-child(3) { animation-delay: 0.3s; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+.section h3 { 
+  margin: 0 0 16px; 
+  font-size: 18px; 
+  font-weight: 600; 
+  color: var(--color-accent); 
+  display: flex;
+  align-items: center;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+.field-row { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 15px; 
+  margin-bottom: 15px; 
+  animation: fadeIn 0.5s ease-out both;
+}
+.field-row.full { grid-template-columns: 1fr; }
+label { 
+  font-size: 13px; 
+  color: var(--color-text-secondary); 
+  display: block; 
+  margin-bottom: 6px; 
+  font-weight: 500;
+}
+input, select, textarea { 
+  width: 100%; 
+  font-size: 14px; 
+  padding: 10px 12px; 
+  border-radius: var(--border-radius-md); 
+  border: 1px solid var(--color-border-secondary); 
+  background: var(--color-background-tertiary); 
+  color: var(--color-text-primary); 
+  font-family: var(--font-sans); 
+  transition: all 0.3s ease;
+}
+input:focus, select:focus, textarea:focus { 
+  outline: none; 
+  border-color: var(--color-accent); 
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  transform: scale(1.02);
+}
+textarea { 
+  resize: vertical; 
+  min-height: 80px; 
+}
+.faq-block { 
+  border: 1px solid var(--color-border-tertiary); 
+  border-radius: var(--border-radius-md); 
+  padding: 12px 14px; 
+  margin-bottom: 10px; 
+  background: var(--color-background-tertiary); 
+  transition: all 0.3s ease;
+}
+.faq-block:hover {
+  border-color: var(--color-accent);
+  transform: translateX(5px);
+}
+.faq-block label { 
+  color: var(--color-text-secondary); 
+  font-size: 13px; 
+  margin-bottom: 4px; 
+}
+.faq-block input, .faq-block textarea { 
+  background: var(--color-background-primary); 
+  margin-bottom: 8px; 
+}
+.btn-generate { 
+  width: 100%; 
+  padding: 14px; 
+  font-size: 16px; 
+  font-weight: 600; 
+  border-radius: var(--border-radius-md); 
+  border: 1px solid var(--color-accent); 
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover)); 
+  color: #000; 
+  cursor: pointer; 
+  margin-bottom: 1.5rem; 
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.btn-generate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+.btn-generate:hover::before {
+  left: 100%;
+}
+.btn-generate:hover { 
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+.btn-generate:active {
+  transform: translateY(0);
+}
+.btn-generate.loading {
+  pointer-events: none;
+}
+.btn-generate.loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  border: 2px solid #000;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.output-block { 
+  display: none; 
+  animation: fadeIn 0.5s ease-out;
+}
+.output-block.visible { display: block; }
+.schema-card { 
+  margin-bottom: 1.5rem; 
+  border: 1px solid var(--color-border-primary); 
+  border-radius: var(--border-radius-lg); 
+  overflow: hidden; 
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+.schema-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+.schema-header { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 12px 16px; 
+  background: var(--color-background-secondary); 
+  border-bottom: 1px solid var(--color-border-tertiary); 
+}
+.schema-title { 
+  font-size: 16px; 
+  font-weight: 600; 
+  color: var(--color-text-primary); 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+}
+.badge-schema { 
+  font-size: 12px; 
+  padding: 3px 10px; 
+  border-radius: 20px; 
+  background: linear-gradient(135deg, #ffd700, #ffed4e); 
+  color: #000; 
+  font-weight: 600;
+}
+.copy-btn { 
+  font-size: 13px; 
+  padding: 6px 14px; 
+  border-radius: var(--border-radius-md); 
+  border: 1px solid var(--color-border-secondary); 
+  background: var(--color-background-primary); 
+  color: var(--color-text-primary); 
+  cursor: pointer; 
+  transition: all 0.3s ease;
+}
+.copy-btn:hover { 
+  background: var(--color-accent); 
+  color: #000;
+  transform: scale(1.05);
+}
+.copy-btn.copied { 
+  background: linear-gradient(135deg, #4CAF50, #45a049); 
+  color: #fff; 
+  border-color: #4CAF50; 
+}
+pre { 
+  margin: 0; 
+  padding: 16px; 
+  font-size: 13px; 
+  font-family: var(--font-mono); 
+  color: var(--color-text-primary); 
+  background: var(--color-background-primary); 
+  overflow-x: auto; 
+  white-space: pre-wrap; 
+  word-break: break-all; 
+  line-height: 1.6; 
+  max-height: 300px; 
+  overflow-y: auto; 
+}
+.rank-math-note { 
+  background: linear-gradient(135deg, #e6f1fb, #b3d9ff); 
+  border: 1px solid #85b7eb; 
+  border-radius: var(--border-radius-md); 
+  padding: 12px 16px; 
+  margin-bottom: 1.5rem; 
+  font-size: 14px; 
+  color: #0c447c; 
+  line-height: 1.6; 
+  box-shadow: var(--shadow);
+}
+.tabs { 
+  display: flex; 
+  gap: 8px; 
+  margin-bottom: 1.5rem; 
+  flex-wrap: wrap; 
+}
+.tab-btn { 
+  font-size: 13px; 
+  padding: 6px 14px; 
+  border-radius: 20px; 
+  border: 1px solid var(--color-border-secondary); 
+  background: var(--color-background-secondary); 
+  color: var(--color-text-secondary); 
+  cursor: pointer; 
+  transition: all 0.3s ease;
+}
+.tab-btn.active { 
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover)); 
+  color: #000; 
+  border-color: var(--color-accent); 
+  font-weight: 600; 
+  transform: scale(1.05);
+}
+.tab-btn:hover { 
+  background: var(--color-background-primary); 
+  color: var(--color-text-primary);
+  transform: scale(1.05);
+}
+.schema-section { 
+  display: none; 
+  animation: fadeIn 0.4s ease-out;
+}
+.schema-section.active { display: block; }
+.step-badge { 
+  font-size: 12px; 
+  background: linear-gradient(135deg, #eeedfe, #d4d0ff); 
+  color: #3c3489; 
+  padding: 3px 10px; 
+  border-radius: 20px; 
+  margin-left: 8px; 
+  font-weight: 600;
+}
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <h2 style="font-size:24px;font-weight:700;margin:0 0 1rem;color:var(--color-accent);text-align:center;text-shadow:0 2px 4px rgba(0,0,0,0.5);animation:fadeIn 1s ease-out">VIP Schema Code Generator</h2>
+  <p style="font-size:15px;color:var(--color-text-secondary);margin:0 0 2rem;line-height:1.7;text-align:center;animation:fadeIn 1.2s ease-out">Elevate your SEO game with our premium schema markup generator. Input your details, generate optimized codes, and dominate search results.</p>
+
+  <div class="section">
+    <h3><i class="ti ti-package" style="font-size:16px;vertical-align:-2px;margin-right:6px" aria-hidden="true"></i>Product Details</h3>
+    <div class="field-row">
+      <div><label>Product Name *</label><input type="text" id="pName" placeholder="e.g. GlucoTrust"></div>
+      <div><label>Brand / Manufacturer *</label><input type="text" id="pBrand" placeholder="e.g. Maximum Edge Nutrition"></div>
+    </div>
+    <div class="field-row">
+      <div><label>Product URL (affiliate link) *</label><input type="text" id="pUrl" placeholder="https://..."></div>
+      <div><label>Image URL (product image)</label><input type="text" id="pImage" placeholder="https://yoursite.com/image.jpg"></div>
+    </div>
+    <div class="field-row">
+      <div><label>Price (USD) *</label><input type="text" id="pPrice" placeholder="e.g. 69"></div>
+      <div><label>Currency</label><input type="text" id="pCurrency" value="USD"></div>
+    </div>
+    <div class="field-row full">
+      <div><label>Short Description (1-2 lines) *</label><textarea id="pDesc" placeholder="e.g. GlucoTrust is a blood sugar support supplement containing berberine and chromium..."></textarea></div>
+    </div>
+    <div class="field-row">
+      <div><label>Article Publish Date</label><input type="date" id="pDate"></div>
+      <div><label>Author Name</label><input type="text" id="pAuthor" placeholder="e.g. John Smith"></div>
+    </div>
+    <div class="field-row">
+      <div><label>Your Website Name *</label><input type="text" id="pSite" placeholder="e.g. HealthReviewHub"></div>
+      <div><label>Your Website URL *</label><input type="text" id="pSiteUrl" placeholder="https://yourdomain.com"></div>
+    </div>
+    <div class="field-row">
+      <div><label>Money-Back Guarantee (days)</label><input type="text" id="pGuarantee" placeholder="e.g. 60"></div>
+      <div><label>Availability</label>
+        <select id="pAvail">
+          <option value="https://schema.org/InStock">In Stock</option>
+          <option value="https://schema.org/OutOfStock">Out of Stock</option>
+          <option value="https://schema.org/PreOrder">Pre-Order</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3><i class="ti ti-help-circle" style="font-size:16px;vertical-align:-2px;margin-right:6px" aria-hidden="true"></i>FAQ Questions (6 required)</h3>
+    <p style="font-size:12px;color:var(--color-text-secondary);margin:0 0 10px">Apne article ke FAQ section se copy karo exactly.</p>
+    <div id="faqContainer"></div>
+  </div>
+
+  <div class="section">
+    <h3><i class="ti ti-star" style="font-size:16px;vertical-align:-2px;margin-right:6px" aria-hidden="true"></i>Review Rating (optional)</h3>
+    <p style="font-size:12px;color:var(--color-text-secondary);margin:0 0 10px">Sirf tabhi bharo jab genuine rating ho. Fabricated rating Google penalty deta hai.</p>
+    <div class="field-row">
+      <div><label>Rating Value (1-5)</label><input type="number" id="rValue" placeholder="e.g. 4.1" min="1" max="5" step="0.1"></div>
+      <div><label>Review Count</label><input type="number" id="rCount" placeholder="e.g. 847"></div>
+    </div>
+  </div>
+
+  <button class="btn-generate" onclick="generateAll()"><i class="ti ti-code" style="font-size:16px;vertical-align:-2px;margin-right:6px" aria-hidden="true"></i>Generate All Schema Codes</button>
+
+  <div class="output-block" id="outputBlock">
+    <div class="rank-math-note">
+      <strong>Rank Math mein kaise paste karo:</strong> Article editor mein jao &rarr; Right sidebar mein Rank Math (R) icon &rarr; Schema tab &rarr; Schema Generator &rarr; Custom Schema &rarr; neeche diya hua code paste karo.<br>
+      <strong>Ya:</strong> Rank Math &rarr; Schema tab &rarr; "Add New Schema" &rarr; type select karo &rarr; fields fill karo.
+    </div>
+
+    <div class="tabs" id="schemaTabs"></div>
+    <div id="schemaContent"></div>
+  </div>
+</div>
+
+<script>
+const faqDefaults = [
+  {q:"How long does [PRODUCT] take to work?", a:""},
+  {q:"What are the most common [PRODUCT] complaints?", a:""},
+  {q:"What does [PRODUCT] actually do?", a:""},
+  {q:"How do I take [PRODUCT] correctly?", a:""},
+  {q:"Is there a money-back guarantee for [PRODUCT]?", a:""},
+  {q:"Where is the safest place to buy [PRODUCT]?", a:""}
+];
+
+function initFAQ() {
+  const c = document.getElementById('faqContainer');
+  c.innerHTML = '';
+  faqDefaults.forEach((f, i) => {
+    const d = document.createElement('div');
+    d.className = 'faq-block';
+    d.innerHTML = `<label>Question ${i+1}</label><input type="text" id="fq${i}" value="${f.q}" placeholder="Question..."><label>Answer ${i+1}</label><textarea id="fa${i}" placeholder="Answer (under 60 words)..." rows="2"></textarea>`;
+    c.appendChild(d);
+  });
+}
+
+function v(id) { return (document.getElementById(id)||{}).value||''; }
+
+function esc(s) { return s.replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function generateAll() {
+  const btn = document.querySelector('.btn-generate');
+  btn.classList.add('loading');
+  btn.textContent = 'Generating...';
+
+  // Simulate processing time for animation
+  setTimeout(() => {
+    const name = v('pName').trim();
+    const brand = v('pBrand').trim();
+    const url = v('pUrl').trim();
+    const image = v('pImage').trim();
+    const price = v('pPrice').trim();
+    const currency = v('pCurrency').trim() || 'USD';
+    const desc = v('pDesc').trim();
+    const dateVal = v('pDate').trim();
+    const author = v('pAuthor').trim() || 'Editorial Team';
+    const site = v('pSite').trim();
+    const siteUrl = v('pSiteUrl').trim();
+    const guarantee = v('pGuarantee').trim();
+    const avail = v('pAvail').trim();
+    const rVal = v('rValue').trim();
+    const rCount = v('rCount').trim();
+
+    if(!name||!url||!price||!siteUrl) {
+      alert('Product Name, Affiliate URL, Price, and Website URL are required.');
+      btn.classList.remove('loading');
+      btn.innerHTML = '<i class="ti ti-code" style="font-size:16px;vertical-align:-2px;margin-right:6px" aria-hidden="true"></i>Generate All Schema Codes';
+      return;
+    }
+
+    const faqs = [];
+    for(let i=0;i<6;i++) {
+      const q = v(`fq${i}`).trim();
+      const a = v(`fa${i}`).trim();
+      if(q && a) faqs.push({q,a});
+    }
+
+    const today = dateVal || new Date().toISOString().split('T')[0];
+
+    const schemas = [];
+
+    let productProps = `"@context":"https://schema.org","@type":"Product","name":"${esc(name)}","description":"${esc(desc)}","brand":{"@type":"Brand","name":"${esc(brand)}"},"offers":{"@type":"Offer","price":"${price}","priceCurrency":"${currency}","availability":"${avail}","url":"${esc(url)}"}`;
+    if(image) productProps += `,"image":"${esc(image)}"`;
+    if(guarantee) productProps += `,"hasMerchantReturnPolicy":{"@type":"MerchantReturnPolicy","returnPolicyCategory":"https://schema.org/MerchantReturnFiniteReturnWindow","merchantReturnDays":${guarantee}}`;
+    if(rVal && rCount) {
+      productProps += `,"aggregateRating":{"@type":"AggregateRating","ratingValue":"${rVal}","reviewCount":"${rCount}","bestRating":"5","worstRating":"1"}`;
+    }
+    schemas.push({
+      id:'product',
+      label:'Product Schema',
+      badge:'Rich Snippet',
+      code:`<script type="application/ld+json">\n{\n  ${productProps}\n}\n<\/script>`
+    });
+
+    if(faqs.length > 0) {
+      const faqEntities = faqs.map(f => `    {\n      "@type": "Question",\n      "name": "${esc(f.q)}",\n      "acceptedAnswer": {\n        "@type": "Answer",\n        "text": "${esc(f.a)}"\n      }\n    }`).join(',\n');
+      schemas.push({
+        id:'faq',
+        label:'FAQ Schema',
+        badge:'Accordion Snippet',
+        code:`<script type="application/ld+json">\n{\n  "@context": "https://schema.org",\n  "@type": "FAQPage",\n  "mainEntity": [\n${faqEntities}\n  ]\n}\n<\/script>`
+      });
+    }
+
+    let reviewProps = `"@context":"https://schema.org","@type":"Review","name":"${esc(name)} Review 2026","description":"${esc(desc)}","itemReviewed":{"@type":"Product","name":"${esc(name)}","brand":{"@type":"Brand","name":"${esc(brand)}"}},"author":{"@type":"Person","name":"${esc(author)}"},"publisher":{"@type":"Organization","name":"${esc(site)}","url":"${esc(siteUrl)}"},"datePublished":"${today}"`;
+    if(rVal) reviewProps += `,"reviewRating":{"@type":"Rating","ratingValue":"${rVal}","bestRating":"5","worstRating":"1"}`;
+    schemas.push({
+      id:'review',
+      label:'Review Schema',
+      badge:'Review Rich Result',
+      code:`<script type="application/ld+json">\n{\n  ${reviewProps}\n}\n<\/script>`
+    });
+
+    let artProps = `"@context":"https://schema.org","@type":"Article","headline":"${esc(name)} Review 2026: Does This Supplement Actually Work?","description":"${esc(desc)}","author":{"@type":"Person","name":"${esc(author)}"},"publisher":{"@type":"Organization","name":"${esc(site)}","url":"${esc(siteUrl)}"},"datePublished":"${today}","dateModified":"${today}","mainEntityOfPage":{"@type":"WebPage","@id":"${esc(url)}"}`;
+    if(image) artProps += `,"image":{"@type":"ImageObject","url":"${esc(image)}"}`;
+    schemas.push({
+      id:'article',
+      label:'Article Schema',
+      badge:'Article Rich Result',
+      code:`<script type="application/ld+json">\n{\n  ${artProps}\n}\n<\/script>`
+    });
+
+    schemas.push({
+      id:'breadcrumb',
+      label:'Breadcrumb Schema',
+      badge:'Breadcrumb Trail',
+      code:`<script type="application/ld+json">\n{\n  "@context": "https://schema.org",\n  "@type": "BreadcrumbList",\n  "itemListElement": [\n    {\n      "@type": "ListItem",\n      "position": 1,\n      "name": "Home",\n      "item": "${esc(siteUrl)}"\n    },\n    {\n      "@type": "ListItem",\n      "position": 2,\n      "name": "Reviews",\n      "item": "${esc(siteUrl)}/reviews/"\n    },\n    {\n      "@type": "ListItem",\n      "position": 3,\n      "name": "${esc(name)} Review",\n      "item": "${esc(url)}"\n    }\n  ]\n}\n<\/script>`
+    });
+
+    const tabsEl = document.getElementById('schemaTabs');
+    const contentEl = document.getElementById('schemaContent');
+    tabsEl.innerHTML = '';
+    contentEl.innerHTML = '';
+
+    schemas.forEach((s, i) => {
+      const tb = document.createElement('button');
+      tb.className = 'tab-btn' + (i===0?' active':'');
+      tb.textContent = s.label;
+      tb.onclick = () => {
+        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('.schema-section').forEach(b=>b.classList.remove('active'));
+        tb.classList.add('active');
+        document.getElementById('sec_'+s.id).classList.add('active');
+      };
+      tabsEl.appendChild(tb);
+
+      const sec = document.createElement('div');
+      sec.className = 'schema-section' + (i===0?' active':'');
+      sec.id = 'sec_'+s.id;
+      sec.style.animationDelay = `${i * 0.1}s`;
+      sec.innerHTML = `
+        <div class="schema-card">
+          <div class="schema-header">
+            <div class="schema-title"><i class="ti ti-code" style="font-size:16px" aria-hidden="true"></i>${s.label} <span class="badge-schema">${s.badge}</span></div>
+            <button class="copy-btn" id="cbtn_${s.id}" onclick="copyCode('${s.id}')"><i class="ti ti-copy" style="font-size:14px;vertical-align:-2px;margin-right:4px" aria-hidden="true"></i>Copy Code</button>
+          </div>
+          <pre id="code_${s.id}">${s.code.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
+        </div>
+      `;
+      contentEl.appendChild(sec);
+
+      sec.querySelector(`#code_${s.id}`)._rawCode = s.code;
+    });
+
+    document.getElementById('outputBlock').className = 'output-block visible';
+    document.getElementById('outputBlock').scrollIntoView({behavior:'smooth',block:'start'});
+
+    btn.classList.remove('loading');
+    btn.innerHTML = '<i class="ti ti-code" style="font-size:16px;vertical-align:-2px;margin-right:6px" aria-hidden="true"></i>Generate All Schema Codes';
+  }, 1500); // 1.5 second delay for premium feel
+}
+
+function copyCode(id) {
+  const pre = document.getElementById('code_'+id);
+  const raw = pre._rawCode;
+  if(navigator.clipboard) {
+    navigator.clipboard.writeText(raw).then(()=>showCopied(id));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = raw;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showCopied(id);
+  }
+}
+
+function showCopied(id) {
+  const btn = document.getElementById('cbtn_'+id);
+  btn.textContent = 'Copied!';
+  btn.className = 'copy-btn copied';
+  setTimeout(()=>{
+    btn.innerHTML = '<i class="ti ti-copy" style="font-size:14px;vertical-align:-2px;margin-right:4px" aria-hidden="true"></i>Copy Code';
+    btn.className = 'copy-btn';
+  }, 2000);
+}
+
+initFAQ();
+document.getElementById('pDate').valueAsDate = new Date();
+</script>
+</body>
+</html>
